@@ -25,7 +25,7 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 }
 
 func findNext(nums1 []int, nums2 []int) (func() (int, int)) {
-  var i, j, cur, pos int
+  var i, j, cur int
   return func() (int, int) {
     if i < len(nums1) && j < len(nums2) {
       if nums1[i] < nums2[j] {
@@ -42,9 +42,7 @@ func findNext(nums1 []int, nums2 []int) (func() (int, int)) {
       cur = nums2[j]
       j++
     }
-    fmt.Println(cur)
-    pos++
-    return pos, cur
+    return i + j, cur
   }
 }
 
