@@ -1,32 +1,34 @@
 package main
 
 import "fmt"
+import "math"
 
 func longestPalindrome(s string) string {
-  var longestSubstr string
-  var max int
+  if len(s) <= 0 {
+    return ""
+  }
+  var start, end int
   for i := 0; i < len(s); i++ {
-    for j := len(s); j > i + max; j-- {
-      if palindrom(s[i:j]) && j - i > max {
-        longestSubstr = s[i:j]
-        max = j - i
-      }
+    length1 := expandCenter(s, i, i)
+    length2 := expandCenter(s, i, i + 1)
+    length := int(math.Max(float64(length1), float64(length2)))
+    if length > end - start + 1 {
+      start = i - (length - 1) / 2
+      end = i + length / 2
     }
   }
-  return longestSubstr
+  return s[start:(end + 1)]
 }
 
-func palindrom(s string) bool {
-  half := len(s) / 2
-  for i := 0; i < half; i++ {
-    if s[i] != s[len(s) - 1 - i] {
-      return false
-    }
+func expandCenter(s string, left int, right int) int {
+  for left >= 0 && right < len(s) && s[left] == s[right] {
+    left--
+    right++
   }
-  return true
+  return right - left - 1
 }
 
 func main() {
-  input := "babad"
+  input := ""
   fmt.Println(longestPalindrome(input))
 }
