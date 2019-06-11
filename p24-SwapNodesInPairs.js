@@ -10,7 +10,7 @@
  * @return {ListNode}
  */
 var swapPairs = function(head) {
-  if(head.next === null) { return head; }
+  if(head === null || head.next === null) { return head; }
   var cur = head;
   var previous = new ListNode();
   var point = previous;
