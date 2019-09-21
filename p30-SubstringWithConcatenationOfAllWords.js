@@ -16,7 +16,7 @@ var findSubstring = function(s, words) {
   var res = [];
   var wlen = words[0].length;
   var fixedPointer = 0, movedPointer = 0;
-  while(fixedPointer < s.length - wlen) {
+  while(fixedPointer <= s.length - (wlen * words.length)) {
     var newWordHash = {};
     movedPointer = fixedPointer;
     while(movedPointer <= s.length - wlen) {
