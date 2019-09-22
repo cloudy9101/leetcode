@@ -7,7 +7,7 @@ var isPalindrome = function(x) {
   if(x === 0) { return true; }
 
   var arr = [];
-  while(x > 0) {
+  while (x > 0) {
     arr.push(x % 10);
     x = Math.floor(x / 10);
   }
